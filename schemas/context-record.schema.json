@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creature-context.local/schemas/context-record.schema.json",
+  "title": "Context Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "record_type",
+    "value",
+    "scope_id",
+    "source_id",
+    "authority",
+    "confidence",
+    "created_at",
+    "observed_at",
+    "content_hash",
+    "snapshot_id",
+    "privacy_class",
+    "state"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "record_type": {
+      "enum": [
+        "Purpose",
+        "Requirement",
+        "Decision",
+        "Constraint",
+        "Task",
+        "Question",
+        "Finding",
+        "Permission",
+        "Activity",
+        "Summary"
+      ]
+    },
+    "value": {
+      "type": "string"
+    },
+    "scope_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "authority": {
+      "enum": [
+        "System",
+        "Human",
+        "Project",
+        "Tool",
+        "Model"
+      ]
+    },
+    "confidence": {
+      "type": "number"
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observed_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "contradicts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "content_hash": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "privacy_class": {
+      "enum": [
+        "Public",
+        "Project",
+        "Private",
+        "Secret"
+      ]
+    },
+    "state": {
+      "enum": [
+        "Active",
+        "Superseded",
+        "Contested",
+        "Resolved"
+      ]
+    }
+  }
+}

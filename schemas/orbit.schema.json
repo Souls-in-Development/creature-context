@@ -1,0 +1,225 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creature-context.local/schemas/orbit-packet.schema.json",
+  "title": "Orbit Packet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "request",
+    "scale",
+    "mode",
+    "task",
+    "architectural_spine",
+    "estimated_total_tokens",
+    "budget"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task",
+        "target_references",
+        "scale",
+        "mode",
+        "snapshot_preference",
+        "token_budget",
+        "maximum_graph_depth",
+        "required_proof_floor",
+        "inferred_policy",
+        "privacy_ceiling"
+      ],
+      "properties": {
+        "task": {
+          "type": "string"
+        },
+        "target_references": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "exclusions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "scale": {
+          "enum": [
+            "universe",
+            "galaxy",
+            "system",
+            "planet",
+            "moon",
+            "adaptive"
+          ]
+        },
+        "mode": {
+          "enum": [
+            "design",
+            "focus",
+            "trace",
+            "compare",
+            "health",
+            "change"
+          ]
+        },
+        "comparison_dimensions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "snapshot_preference": {
+          "type": [
+            "string",
+            "object"
+          ]
+        },
+        "token_budget": {
+          "type": "integer"
+        },
+        "maximum_graph_depth": {
+          "type": "integer"
+        },
+        "required_proof_floor": {
+          "enum": [
+            "unknown",
+            "metadata",
+            "syntax",
+            "lint",
+            "typecheck",
+            "build",
+            "test",
+            "human"
+          ]
+        },
+        "inferred_policy": {
+          "enum": [
+            "exclude",
+            "include_attributed",
+            "prefer_deterministic"
+          ]
+        },
+        "privacy_ceiling": {
+          "enum": [
+            "Public",
+            "Project",
+            "Private",
+            "Secret"
+          ]
+        },
+        "client_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "session_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "resolved_references": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "context_records": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "omission_counts": {
+      "type": "object"
+    },
+    "minimum_required_tokens": {
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "scale": {
+      "enum": [
+        "universe",
+        "galaxy",
+        "system",
+        "planet",
+        "moon",
+        "adaptive"
+      ]
+    },
+    "mode": {
+      "enum": [
+        "design",
+        "focus",
+        "trace",
+        "compare",
+        "health",
+        "change"
+      ]
+    },
+    "task": {
+      "type": "string"
+    },
+    "architectural_spine": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "selected_entities": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "comparison": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "uncertainty": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selection_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "estimated_total_tokens": {
+      "type": "integer"
+    },
+    "budget": {
+      "type": "integer"
+    }
+  }
+}

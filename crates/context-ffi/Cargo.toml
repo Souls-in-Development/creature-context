@@ -1,0 +1,13 @@
+[package]
+name = "creature-context-ffi"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+creature-context-core = { path = "../context-core" }
+creature-context-store = { path = "../context-store" }
+creature-context-parsers = { path = "../context-parsers" }
+jni = "0.21.1"

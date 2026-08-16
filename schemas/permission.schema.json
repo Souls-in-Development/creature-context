@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creature-context.local/schemas/permission.schema.json",
+  "title": "Permission",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "subject",
+    "action",
+    "resource",
+    "scope",
+    "decision",
+    "authority_source",
+    "created_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "subject": {
+      "type": "string"
+    },
+    "action": {
+      "enum": [
+        "Read",
+        "Index",
+        "Enrich",
+        "WriteContext",
+        "WriteSource",
+        "Move",
+        "Delete",
+        "Execute",
+        "Transmit"
+      ]
+    },
+    "resource": {
+      "type": "string"
+    },
+    "scope": {
+      "enum": [
+        "Once",
+        "Session",
+        "Project",
+        "Ongoing"
+      ]
+    },
+    "decision": {
+      "enum": [
+        "Allow",
+        "Deny"
+      ]
+    },
+    "authority_source": {
+      "enum": [
+        "System",
+        "Human",
+        "Project",
+        "Tool",
+        "Model"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "expires_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "supersedes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

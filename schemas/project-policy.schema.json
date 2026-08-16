@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creature-context.local/schemas/project-policy.schema.json",
+  "title": "Project Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "authority_mode",
+    "compatibility_yaml",
+    "portability",
+    "privacy",
+    "freshness",
+    "redaction_patterns",
+    "green_proof_floors",
+    "model",
+    "admission",
+    "metadata_projections"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "integer"
+    },
+    "authority_mode": {
+      "enum": [
+        "Observe",
+        "Maintain",
+        "Prepare",
+        "Act"
+      ]
+    },
+    "compatibility_yaml": {
+      "type": "boolean"
+    },
+    "portability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "commit_journals",
+        "commit_permissions",
+        "encrypted_sync"
+      ],
+      "properties": {
+        "commit_journals": {
+          "type": "boolean"
+        },
+        "commit_permissions": {
+          "type": "boolean"
+        },
+        "encrypted_sync": {
+          "type": "boolean"
+        }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_ceiling",
+        "portable_ceiling",
+        "allow_transmission"
+      ],
+      "properties": {
+        "source_ceiling": {
+          "enum": [
+            "Public",
+            "Project",
+            "Private",
+            "Secret"
+          ]
+        },
+        "portable_ceiling": {
+          "enum": [
+            "Public",
+            "Project",
+            "Private",
+            "Secret"
+          ]
+        },
+        "allow_transmission": {
+          "type": "boolean"
+        }
+      }
+    },
+    "freshness": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "integer"
+      }
+    },
+    "redaction_patterns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "green_proof_floors": {
+      "type": "object"
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rules_only",
+        "allowed_provider_ids",
+        "allowed_endpoints"
+      ],
+      "properties": {
+        "rules_only": {
+          "type": "boolean"
+        },
+        "allowed_provider_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allowed_endpoints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "admission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_confidence",
+        "maximum_candidate_age_seconds",
+        "human_review_for_protected"
+      ],
+      "properties": {
+        "minimum_confidence": {
+          "type": "number"
+        },
+        "maximum_candidate_age_seconds": {
+          "type": "integer"
+        },
+        "human_review_for_protected": {
+          "type": "boolean"
+        }
+      }
+    },
+    "metadata_projections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

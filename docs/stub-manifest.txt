@@ -1,0 +1,42 @@
+# Known facades awaiting a later milestone.
+#
+# The anti-facade gate (crates/context-cli/tests/no_facade.rs) fails if a facade
+# appears that is not on this list, and fails if a listed entry is no longer a
+# facade. The list may shrink. It may never grow.
+#
+# Regenerate with: python3 scripts/regenerate-stub-manifest.py
+#
+# Two entry kinds:
+#   path            whole file is a stub (every item has an empty body)
+#   path::function  one function in an otherwise real file is trivially constant
+#
+# Milestone 2 (resident runtime):   crates/context-runtime/
+# Milestone 3 (authority/universe): context-core/{authority,context,universe,sources}/,
+#                                   permission *, register, context-store/src/universe.rs
+# Milestone 4 (structural depth):   crates/context-parsers/
+# Milestone 5 (semantic/platform):  crates/context-model/, crates/context-ffi/
+
+# --- whole-file stubs ---
+crates/context-core/benches/orbit_bench.rs
+crates/context-core/src/orbit/rings.rs
+crates/context-core/src/sources/browser.rs
+crates/context-core/src/sources/diagnostics.rs
+crates/context-core/src/sources/git.rs
+crates/context-core/src/sources/instructions.rs
+crates/context-core/src/sources/issues.rs
+crates/context-core/src/sources/provider.rs
+crates/context-core/src/sources/session.rs
+crates/context-core/src/sources/terminal.rs
+crates/context-core/src/sources/verification.rs
+crates/context-ffi/src/lib.rs
+crates/context-model/src/admission.rs
+crates/context-model/src/ollama.rs
+crates/context-model/src/openai_compat.rs
+crates/context-parsers/src/graph.rs
+
+# --- constant-body functions in otherwise real files ---
+crates/context-cli/src/commands/register.rs::handle_register    # returns Ok(())
+crates/context-core/src/lib.rs::active_metadata_enforcement    # empty body
+crates/context-model/src/platform/apple.rs::available    # returns false
+crates/context-model/src/platform/apple.rs::summarize    # returns None
+crates/context-model/src/rules.rs::propose    # returns Vec::new()

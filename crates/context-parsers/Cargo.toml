@@ -1,0 +1,18 @@
+[package]
+name = "creature-context-parsers"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+creature-context-types = { path = "../context-types" }
+creature-context-core = { path = "../context-core" }
+uuid = { workspace = true }
+blake3 = { workspace = true }
+thiserror = { workspace = true }
+# The vendored grammars are ABI 15 (LANGUAGE_VERSION 15), which the Rust binding
+# supports only from 0.25 — 0.24's max is ABI 14, and the previous 0.20.10 pin
+# could not load them at all. Verified by parsing. See provenance.json.
+tree-sitter = "0.25"
+
+[build-dependencies]
+cc = "1"

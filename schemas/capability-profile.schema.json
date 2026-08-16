@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creature-context.local/schemas/capability-profile.schema.json",
+  "title": "Capability Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "provider_id",
+    "model_id",
+    "state",
+    "privacy_class",
+    "role_scores",
+    "structured_output_rate",
+    "attribution_rate",
+    "p95_latency_ms",
+    "measured_input_limit",
+    "measured_output_limit",
+    "memory_mib",
+    "storage_mib",
+    "tested_languages",
+    "calibration_version",
+    "calibrated_at"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provider_id": {
+      "type": "string"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "Unavailable",
+        "ImplementedUnverified",
+        "Verified"
+      ]
+    },
+    "privacy_class": {
+      "enum": [
+        "Public",
+        "Project",
+        "Private",
+        "Secret"
+      ]
+    },
+    "role_scores": {
+      "type": "object"
+    },
+    "structured_output_rate": {
+      "type": "number"
+    },
+    "attribution_rate": {
+      "type": "number"
+    },
+    "p95_latency_ms": {
+      "type": "integer"
+    },
+    "measured_input_limit": {
+      "type": "integer"
+    },
+    "measured_output_limit": {
+      "type": "integer"
+    },
+    "memory_mib": {
+      "type": "integer"
+    },
+    "storage_mib": {
+      "type": "integer"
+    },
+    "tested_languages": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "calibration_version": {
+      "type": "string"
+    },
+    "calibrated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence_locator": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

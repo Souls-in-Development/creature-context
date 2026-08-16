@@ -1,0 +1,28 @@
+[package]
+name = "creature-context"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+
+[dependencies]
+clap.workspace = true
+creature-context-types = { path = "../context-types" }
+creature-context-core = { path = "../context-core" }
+creature-context-store = { path = "../context-store" }
+creature-context-runtime = { path = "../context-runtime" }
+creature-context-parsers = { path = "../context-parsers" }
+serde.workspace = true
+serde_json.workspace = true
+serde_yaml.workspace = true
+uuid.workspace = true
+tokio = { workspace = true }
+ctrlc = { workspace = true }
+chrono = { workspace = true }
+
+[dev-dependencies]
+rusqlite.workspace = true
+
+[[bin]]
+name = "creature-context"
+path = "src/main.rs"

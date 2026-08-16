@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creature-context.local/schemas/module-map.schema.json",
+  "title": "Creature Context Module Map Projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["snapshot_id", "generated_from", "modules", "relationships"],
+  "properties": {
+    "snapshot_id": { "type": "string", "minLength": 1 },
+    "generated_from": { "const": ".atlas.yaml" },
+    "modules": { "type": "array" },
+    "relationships": { "type": "array" }
+  }
+}
+

@@ -1,0 +1,19 @@
+[package]
+name = "creature-context-runtime"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+creature-context-types = { path = "../context-types" }
+creature-context-core = { path = "../context-core" }
+creature-context-store = { path = "../context-store" }
+creature-context-model = { path = "../context-model" }
+creature-context-parsers = { path = "../context-parsers" }
+serde = { workspace = true }
+serde_json = { workspace = true }
+uuid = { workspace = true }
+thiserror = { workspace = true }
+tokio = { workspace = true }
+notify = { workspace = true }
+chrono = { workspace = true }
+blake3 = { workspace = true }

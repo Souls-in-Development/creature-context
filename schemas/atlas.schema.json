@@ -1,0 +1,527 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creature-context.local/schemas/atlas-snapshot.schema.json",
+  "title": "Atlas Snapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "snapshot_id",
+    "entities",
+    "edges"
+  ],
+  "properties": {
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "timestamp": {
+      "type": "string"
+    },
+    "entities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "scale",
+          "kind",
+          "canonical_name",
+          "structural_fingerprint",
+          "snapshot_id",
+          "observed_at",
+          "deterministic_summary"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scale": {
+            "enum": [
+              "universe",
+              "galaxy",
+              "system",
+              "planet",
+              "moon"
+            ]
+          },
+          "kind": {
+            "type": "string"
+          },
+          "canonical_name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "relative_path": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "parent_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "purpose_clauses": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "protected_decision_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "responsibilities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "interfaces": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "capabilities": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "sockets": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "id",
+                "entity_id",
+                "direction",
+                "shape",
+                "optional",
+                "resolution",
+                "source_id",
+                "confidence",
+                "observed_at",
+                "snapshot_id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "entity_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "direction": {
+                  "enum": [
+                    "requires",
+                    "provides"
+                  ]
+                },
+                "shape": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "qualified_name",
+                    "structural_signature",
+                    "version",
+                    "hash"
+                  ],
+                  "properties": {
+                    "qualified_name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "structural_signature": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "version": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "hash": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                },
+                "optional": {
+                  "type": "boolean"
+                },
+                "resolution": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "kind"
+                      ],
+                      "properties": {
+                        "kind": {
+                          "const": "unresolved"
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "kind",
+                        "value"
+                      ],
+                      "properties": {
+                        "kind": {
+                          "const": "fit"
+                        },
+                        "value": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "provided_socket_id",
+                            "basis",
+                            "status",
+                            "checked_by",
+                            "proof_path",
+                            "plane",
+                            "confidence"
+                          ],
+                          "properties": {
+                            "provided_socket_id": {
+                              "type": "string",
+                              "minLength": 1
+                            },
+                            "basis": {
+                              "enum": [
+                                "unique",
+                                "ranked"
+                              ]
+                            },
+                            "status": {
+                              "enum": [
+                                "unconfirmed",
+                                "confirmed",
+                                "rejected"
+                              ]
+                            },
+                            "checked_by": {
+                              "type": [
+                                "string",
+                                "null"
+                              ],
+                              "enum": [
+                                null,
+                                "typecheck",
+                                "build",
+                                "test",
+                                "human"
+                              ]
+                            },
+                            "proof_path": {
+                              "enum": [
+                                "unchecked",
+                                "available",
+                                "unavailable"
+                              ]
+                            },
+                            "plane": {
+                              "enum": [
+                                "inferred",
+                                "observed"
+                              ]
+                            },
+                            "confidence": {
+                              "type": "number",
+                              "minimum": 0,
+                              "maximum": 1
+                            }
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "kind",
+                        "value"
+                      ],
+                      "properties": {
+                        "kind": {
+                          "const": "hole"
+                        },
+                        "value": {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "required": [
+                            "reason",
+                            "candidates",
+                            "adapter_target"
+                          ],
+                          "properties": {
+                            "reason": {
+                              "enum": [
+                                "no_match",
+                                "ambiguous"
+                              ]
+                            },
+                            "candidates": {
+                              "type": "array",
+                              "items": {
+                                "type": "string",
+                                "minLength": 1
+                              }
+                            },
+                            "adapter_target": {
+                              "type": "boolean"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ]
+                },
+                "source_id": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "confidence": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "observed_at": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "snapshot_id": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          "source_spans": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "structural_fingerprint": {
+            "type": "string"
+          },
+          "local_evidence": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "inherited_evidence": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "green": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "open_conflict_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "deterministic_summary": {
+            "type": "string"
+          },
+          "inferred_summaries": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "uncertainty": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "snapshot_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "observed_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fresh_until": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "source_entity_id",
+          "target_entity_id",
+          "kind",
+          "plane",
+          "source_id",
+          "confidence",
+          "observed_at",
+          "required",
+          "snapshot_id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_entity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "target_entity_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "contains",
+              "imports",
+              "calls",
+              "references",
+              "implements",
+              "conforms",
+              "tests",
+              "configures",
+              "deploys",
+              "produces",
+              "consumes",
+              "shares",
+              "supersedes",
+              "conflicts",
+              "duplicates",
+              "resembles"
+            ]
+          },
+          "plane": {
+            "enum": [
+              "declared",
+              "observed",
+              "inferred"
+            ]
+          },
+          "proof_record_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "source_id": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "number"
+          },
+          "observed_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "fresh_until": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "snapshot_id": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "conflicts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "locator"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "file",
+              "git",
+              "build",
+              "test",
+              "issue",
+              "conversation",
+              "terminal",
+              "agent",
+              "human"
+            ]
+          },
+          "locator": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

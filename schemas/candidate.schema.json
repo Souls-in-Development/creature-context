@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creature-context.local/schemas/candidate.schema.json",
+  "title": "Candidate",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "payload",
+    "provider_id",
+    "model_id",
+    "capability_profile_id",
+    "schema_version",
+    "state",
+    "rejection_reasons",
+    "created_at",
+    "snapshot_id"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "payload": {
+      "type": "object"
+    },
+    "provider_id": {
+      "type": "string"
+    },
+    "model_id": {
+      "type": "string"
+    },
+    "capability_profile_id": {
+      "type": "string"
+    },
+    "schema_version": {
+      "type": "integer"
+    },
+    "state": {
+      "enum": [
+        "Pending",
+        "Admitted",
+        "Review",
+        "Rejected"
+      ]
+    },
+    "rejection_reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

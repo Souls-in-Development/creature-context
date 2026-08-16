@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://creature-context.local/schemas/activity.schema.json",
+  "title": "Activity",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "project_id",
+    "galaxy_id",
+    "kind",
+    "source_locator",
+    "observed_at",
+    "snapshot_id",
+    "privacy_class",
+    "payload"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "galaxy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "kind": {
+      "enum": [
+        "FileAdded",
+        "FileModified",
+        "FileRemoved",
+        "FileRenamed",
+        "WatcherOverflow",
+        "RootUnavailable",
+        "Sleep",
+        "Wake",
+        "GitChanged",
+        "VerificationRecorded",
+        "InstructionObserved",
+        "SessionObserved",
+        "HumanDecision",
+        "PermissionRecorded",
+        "ReconcileRequested",
+        "ReconcileApplied"
+      ]
+    },
+    "source_locator": {
+      "type": "string"
+    },
+    "observed_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshot_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "privacy_class": {
+      "enum": [
+        "Public",
+        "Project",
+        "Private",
+        "Secret"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+[package]
+name = "creature-context-model"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+creature-context-types = { path = "../context-types" }
+creature-context-core = { path = "../context-core" }
